@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sân Đua Dự Đoán Euro/World Cup</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+<style>
+
+body {
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+    background:
+        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.94)),
+        url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=1400&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(220,38,38,0.35);
+    border-radius: 999px;
+}
+
+.glass-card {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.worldcup-glow shadow-lg {
+    box-shadow:
+        0 10px 40px rgba(220,38,38,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+</style>
+
+
+<style>
+.worldcup-glow{
+background:linear-gradient(90deg,#d90429,#ef233c,#d90429);
+backdrop-filter:blur(12px);
+}
+
+.glass-card{
+background:rgba(255,255,255,.92)!important;
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.4);
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.match-card-hover{
+transition:all .25s ease;
+}
+
+.match-card-hover:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+</style>
+
+
+<style>
+body{
+    background:#f5f5f7!important;
+    font-family:Inter,sans-serif!important;
+}
+
+.worldcup-glow{
+    background:linear-gradient(90deg,#d90429,#ef233c)!important;
+    min-height:42px!important;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.glass-card{
+    background:#ffffff!important;
+    border-radius:18px!important;
+    border:1px solid #ececec!important;
+    box-shadow:0 4px 14px rgba(0,0,0,.06)!important;
+}
+
+.match-card-hover{
+    background:#fff!important;
+    border-radius:18px!important;
+    border:1px solid #ededed!important;
+    box-shadow:0 2px 10px rgba(0,0,0,.04)!important;
+}
+
+button{
+    font-weight:700!important;
+}
+
+.bottom-nav{
+    background:#fff!important;
+    border-top:1px solid #eee!important;
+}
+
+input,select{
+    background:#020617!important;
+    color:#fff!important;
+    border-radius:12px!important;
+}
+
+.team-name{
+    color:#111827!important;
+    font-weight:800!important;
+}
+
+.status-open{
+    background:#dcfce7!important;
+    color:#16a34a!important;
+    font-weight:800!important;
+}
+
+.status-lock{
+    background:#fee2e2!important;
+    color:#dc2626!important;
+    font-weight:800!important;
+}
+
+.date-time{
+    font-size:16px!important;
+    font-weight:800!important;
+    color:#1f2937!important;
+}
+
+.save-score-btn{
+    background:linear-gradient(90deg,#4338ca,#4f46e5)!important;
+    color:#fff!important;
+    font-weight:900!important;
+    border-radius:14px!important;
+    min-height:46px!important;
+}
+
+.header-title{
+    white-space:nowrap!important;
+    font-size:12px!important;
+    font-weight:900!important;
+}
+
+</style>
+
+
+<style>
+.worldcup-glow{
+    height:42px!important;
+    min-height:42px!important;
+    padding:4px 10px!important;
+    display:flex!important;
+    align-items:center!important;
+    background:linear-gradient(90deg,#d90429,#ef233c)!important;
+}
+
+.worldcup-glow .header-title{
+    font-size:12px!important;
+    line-height:1!important;
+    font-weight:900!important;
+    color:#fff!important;
+    letter-spacing:.2px!important;
+    white-space:nowrap!important;
+}
+
+.worldcup-glow img{
+    max-height:22px!important;
+}
+
+.worldcup-glow .online-status{
+    font-size:12px!important;
+    padding:3px 8px!important;
+    border-radius:999px!important;
+    background:#bbf7d0!important;
+    color:#166534!important;
+    font-weight:800!important;
+}
+
+.profile-card{
+    background:linear-gradient(90deg,#3b4261,#272b44)!important;
+    border-radius:16px!important;
+    padding:14px!important;
+}
+
+.profile-card .name{
+    color:#fff!important;
+    font-size:16px!important;
+    font-weight:900!important;
+}
+
+.profile-card .sub{
+    color:#818cf8!important;
+    font-size:12px!important;
+    font-weight:700!important;
+}
+</style>
+
+
+<style>
+.worldcup-glow .header-wrap{
+display:flex!important;
+align-items:center!important;
+justify-content:space-between!important;
+width:100%!important;
+gap:6px!important;
+}
+
+.worldcup-glow .title-wrap{
+display:flex!important;
+align-items:center!important;
+gap:6px!important;
+overflow:hidden!important;
+}
+
+.worldcup-glow .header-title{
+white-space:nowrap!important;
+overflow:hidden!important;
+text-overflow:ellipsis!important;
+}
+
+.worldcup-glow .palfinger-logo{
+margin-left:auto!important;
+max-height:20px!important;
+}
+</style>
+
+
+<style>
+.worldcup-glow{
+    overflow:hidden!important;
+}
+
+.worldcup-glow .header-title{
+    font-size:11px!important;
+    font-weight:900!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    max-width:190px!important;
+}
+
+.save-score-btn,
+.long-save-btn{
+    font-size:16px!important;
+    font-weight:900!important;
+    letter-spacing:.2px!important;
+    min-height:48px!important;
+}
+
+.save-score-btn i,
+.long-save-btn i{
+    font-size:15px!important;
+}
+</style>
+
+</head>
+<body class="bg-red-50 text-slate-800 min-h-screen pb-24 flex justify-center overflow-x-hidden">
+
+    <!-- Container tối đa cho giao diện di động/máy tính bảng -->
+    <div class="w-full max-w-md bg-white shadow-lg backdrop-blur-xl min-h-screen relative flex flex-col">
+        
+        <!-- Header ứng dụng -->
+        
+<header class="bg-gradient-to-r from-red-700 via-red-600 to-rose-600 py-1 px-3 sticky top-0 z-40 worldcup-glow shadow-lg">
+
+    <div class="flex justify-between items-center">
+
+        <div class="flex items-center gap-1 ">
+
+            <button onclick="toggleSidebar(true)"
+                class="w-8 h-8 rounded-xl bg-white shadow-lg/15 backdrop-blur flex items-center justify-center text-white active:scale-95">
+
+                <i class="fa-solid fa-bars text-lg"></i>
+
+            </button>
+
+            <div class="flex items-center justify-between items-center w-full gap-1">
+
+                <div class="flex items-center gap-1">
+
+                    <div class="bg-white shadow-lg rounded-xl px-2 py-1 shadow-lg">
+                        <img src="data:image/png;base64,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"
+                            class="h-4 object-contain">
+                    </div>
+
+                    <div class="w-8 h-8 rounded-xl bg-white shadow-lg flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/2026_FIFA_World_Cup.svg/800px-2026_FIFA_World_Cup.svg.png"
+                            class="w-8 h-8 object-contain">
+                    </div>
+
+                </div>
+
+                <div>
+
+
+                    <p class="text-[14px] text-red-100 font-semibold mt-1">
+                        PALFINGER VIETNAM - WORLDCUP 2026
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="connectionStatus"
+            class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white shadow-lg/15 text-base text-white font-bold backdrop-blur">
+
+            <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
+
+            <span>LIVE</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+        <!-- MENU BÊN TRÁI (SIDEBAR DRAWER) -->
+        <div id="sidebarOverlay" onclick="toggleSidebar(false)" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 transition-opacity duration-300"></div>
+        <div id="sidebarDrawer" class="fixed top-0 left-0 bottom-0 w-72 bg-slate-900 border-r border-red-100 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-lg">
+            <!-- Top Sidebar -->
+            <div class="p-3 border-b border-red-100 bg-slate-950/40 flex justify-between items-center">
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-circle-user text-indigo-900 font-black text-lg"></i>
+                    <span class="text-base font-bold text-white">Trình Điều Hướng</span>
+                </div>
+                <button onclick="toggleSidebar(false)" class="text-slate-700 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <!-- Items Sidebar -->
+            <div class="flex-1 p-2.5 space-y-6 overflow-y-auto">
+                <div class="space-y-1">
+                    <span class="text-sm font-bold uppercase font-bold text-slate-700 tracking-wider px-3 block mb-1">Menu Chính</span>
+                    <button onclick="navigateFromSidebar('dashboard')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800/60 text-base font-medium text-slate-300 hover:text-white flex items-center gap-1 transition">
+                        <i class="fa-solid fa-flag-checkered text-indigo-900 font-black w-4"></i> Trường Đua (Dashboard)
+                    </button>
+                    <button onclick="navigateFromSidebar('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800/60 text-base font-medium text-slate-300 hover:text-white flex items-center gap-1 transition">
+                        <i class="fa-solid fa-user text-indigo-900 font-black w-4"></i> Xác Minh Cá Nhân
+                    </button>
+                    <button onclick="navigateFromSidebar('predict')" id="sidebarPredictBtn" class="hidden w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800/60 text-base font-medium text-slate-300 hover:text-white flex items-center gap-1 transition">
+                        <i class="fa-solid fa-futbol text-indigo-900 font-black w-4"></i> Giao Diện Dự Đoán
+                    </button>
+                </div>
+
+                <!-- KHU VỰC ĐĂNG NHẬP ADMIN / TRẠNG THÁI -->
+                <div class="pt-4 border-t border-red-100 space-y-2.5">
+                    <span class="text-sm font-bold uppercase font-bold text-slate-700 tracking-wider px-3 block">Chế Độ Quản Trị</span>
+                    
+                    <!-- Chưa Đăng Nhập Admin -->
+                    <div id="adminLoginSection" class="px-3 space-y-2">
+                        <p class="text-sm font-bold text-slate-700">Đăng nhập tài khoản Quản trị viên để cấu hình hệ thống & nhập file Excel.</p>
+                        <button onclick="openAdminLoginModal()" class="w-full bg-slate-850 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-indigo-500/30 text-base font-bold py-2 rounded-xl transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-lock text-slate-700 text-sm font-bold"></i> Đăng Nhập Admin
+                        </button>
+                    </div>
+
+                    <!-- Đã Đăng Nhập Admin -->
+                    <div id="adminPanelSection" class="hidden space-y-1">
+                        <div class="bg-indigo-950/20 border border-indigo-500/20 rounded-xl p-3 mx-2 mb-2">
+                            <div class="flex items-center gap-1 text-indigo-900 font-black text-base font-bold mb-1">
+                                <i class="fa-solid fa-shield-halved animate-pulse"></i> Quyền Quản Trị Viên
+                            </div>
+                            <span class="text-sm font-bold text-slate-700 block">Bạn có quyền truy cập bảng cấu hình, API và import dữ liệu.</span>
+                        </div>
+                        <button onclick="toggleAdminConsole(true)" class="w-full text-left px-3 py-2 rounded-xl hover:bg-indigo-950/30 text-base font-medium text-indigo-300 hover:text-white flex items-center gap-1 transition">
+                            <i class="fa-solid fa-gears w-4"></i> Bảng Quản Trị Cao Cấp
+                        </button>
+                        <button onclick="logoutAdmin()" class="w-full text-left px-3 py-2 rounded-xl text-base font-medium text-red-400 hover:bg-red-500/10 flex items-center gap-1 transition">
+                            <i class="fa-solid fa-right-from-bracket w-4"></i> Đăng xuất Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Sidebar -->
+            <div class="p-2.5 border-t border-red-100 text-center text-[9px] text-slate-600">
+                Predictor App v2.5.0 • 2026
+            </div>
+        </div>
+
+        <!-- MÀN HÌNH CHÍNH -->
+        <main class="flex-1 p-2.5 overflow-y-auto">
+            
+            <!-- ================= BẢNG QUẢN TRỊ ADMIN CAO CẤP (Chỉ hiện khi là Admin) ================= -->
+            <section id="adminConsoleSection" class="hidden space-y-2.5 mb-6 bg-slate-900 border border-indigo-500/20 p-2.5 rounded-2xl relative shadow-lg">
+                <div class="flex justify-between items-center pb-2 border-b border-red-100">
+                    <h3 class="text-base font-extrabold text-indigo-900 font-black uppercase tracking-widest flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-nodes text-indigo-900 font-black"></i> Bảng Quản Trị Tối Cao
+                    </h3>
+                    <button onclick="toggleAdminConsole(false)" class="text-sm font-bold bg-slate-800 hover:bg-slate-750 px-2.5 py-1 rounded text-slate-300">Đóng</button>
+                </div>
+
+
+                <!-- Nhập nhanh dữ liệu (Excel Copy-Paste) -->
+                <div class="pt-3 border-t border-red-100/80 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-bold text-emerald-800 font-black font-bold block"><i class="fa-regular fa-file-excel"></i> IMPORT FILE EXCEL (DÁN BẢNG COPY/CSV):</label>
+                        <div class="flex gap-1.5">
+                            <button onclick="setImportType('users')" id="btnImportUsers" class="px-2 py-0.5 rounded text-[9px] font-bold bg-indigo-600 text-white">Nhân Viên</button>
+                            <button onclick="setImportType('matches')" id="btnImportMatches" class="px-2 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-700">Trận Đấu</button>
+                        </div>
+                    </div>
+                    <p id="importInstructions" class="text-[9px] text-slate-700">Copy bảng nhân viên từ Excel (ID, Tên, Phòng ban) rồi dán vào khung dưới:</p>
+                    <textarea id="importTextarea" rows="3" placeholder="Ví dụ:&#10;NV01&#9;Nguyễn Văn A&#9;Nhân Sự&#10;NV02&#9;Trần Văn B&#9;Kế Toán" class="w-full bg-slate-950 border border-red-100 rounded-xl p-2.5 text-sm font-bold text-slate-300 font-mono focus:outline-none focus:border-indigo-500"></textarea>
+                    <button onclick="executeImport()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-base font-bold py-2 rounded-xl transition flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-600/10">
+                        <i class="fa-solid fa-file-import"></i> Thực Hiện Import Dữ Liệu
+                    </button>
+                </div>
+
+                <!-- Admin cập nhật tỷ số thực tế -->
+                <div class="pt-3 border-t border-red-100/80 space-y-2">
+                    <label class="text-sm font-bold text-amber-400 font-bold block"><i class="fa-solid fa-pen-to-square"></i> CẬP NHẬT TỶ SỐ THỰC TẾ & TÍNH ĐIỂM:</label>
+                    <div id="adminMatchUpdateList" class="max-h-48 overflow-y-auto space-y-1.5 hide-scrollbar">
+                        <!-- Danh sách trận đấu cập nhật tỷ số -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ================= TAB 1: TRƯỜNG ĐUA (DASHBOARD CHUNG) ================= -->
+            <section id="tab-dashboard" class="space-y-2.5">
+                <!-- Banner giải đấu -->
+                <div class="relative rounded-2xl overflow-hidden bg-gradient-to-br from-red-700 via-red-600 to-rose-500 p-3 border border-indigo-500/20 shadow-lg">
+                    <div class="absolute -right-12 -bottom-12 w-36 h-36 bg-indigo-500/10 rounded-full blur-2xl"></div>
+                    <span class="text-sm font-bold uppercase tracking-widest bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-full font-bold">BẢNG XẾP HẠNG TỔNG</span>
+                    <h2 class="text-xl font-extrabold mt-1 tracking-tight text-white">BXH WORLD CUP 2026</h2>
+                    <p class="text-base text-slate-700 mt-1">Nơi vinh danh các nhà tiên tri đỉnh cao. Cập nhật dữ liệu trực tiếp.</p>
+                </div>
+
+                <!-- Thống kê chung -->
+                <div class="grid grid-cols-3 gap-1">
+                    <div class="bg-slate-900/80 border border-red-100 p-3 rounded-xl text-center">
+                        <span class="text-sm font-bold text-slate-700 block mb-0.5">Thành Viên</span>
+                        <span id="statUsersCount" class="text-base font-bold text-white">-</span>
+                    </div>
+                    <div class="bg-slate-900/80 border border-red-100 p-3 rounded-xl text-center">
+                        <span class="text-sm font-bold text-slate-700 block mb-0.5">Trận Dự Đoán</span>
+                        <span id="statMatchesCount" class="text-base font-bold text-indigo-900 font-black">-</span>
+                    </div>
+                    <div class="bg-slate-900/80 border border-red-100 p-3 rounded-xl text-center">
+                        <span class="text-sm font-bold text-slate-700 block mb-0.5">Lượt Đoán</span>
+                        <span id="statPredictsCount" class="text-base font-bold text-emerald-800 font-black">-</span>
+                    </div>
+                </div>
+
+                <!-- Danh sách xếp hạng người chơi -->
+                <div class="space-y-2.5">
+                    <h3 class="text-base font-bold uppercase tracking-wider text-slate-700 flex items-center justify-between">
+                        <span>Bảng tổng sắp điểm số</span>
+                        <span class="text-sm font-bold lowercase font-normal text-indigo-900 font-black">cập nhật tự động</span>
+                    </h3>
+                    
+                    <div id="leaderboardList" class="space-y-2 max-h-[55vh] overflow-y-auto pr-1 custom-scroll">
+                        <div class="text-center py-8 text-slate-700 text-base">Đang tải bảng xếp hạng...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= TAB 2: CÁ NHÂN (ĐĂNG NHẬP / CHỌN TÊN) ================= -->
+            <section id="tab-profile" class="hidden space-y-3">
+                <div class="text-center py-2">
+                    <div class="w-16 h-16 rounded-full bg-slate-800 border-2 border-indigo-500/30 mx-auto flex items-center justify-center mb-3">
+                        <i class="fa-regular fa-user text-2xl text-slate-300"></i>
+                    </div>
+                    <h2 class="text-lg font-bold text-white">XÁC MINH CÁ NHÂN</h2>
+                    <p class="text-base text-slate-700 max-w-xs mx-auto mt-1">Chọn chính xác tên của bạn để mở khóa bảng dự đoán cá nhân của riêng mình.</p>
+                </div>
+
+                <!-- HỘP TÌM KIẾM THÔNG MINH (Search Box) -->
+                <div class="bg-slate-900/90 border border-red-100 p-2.5 rounded-2xl shadow-lg space-y-3">
+                    <label class="block text-base font-semibold text-indigo-900 font-black uppercase tracking-wider">Tìm kiếm tài khoản nhanh</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-700 text-base"></i>
+                        <input id="userSearchInput" type="text" oninput="filterUserList()" placeholder="Nhập tên nhân viên..." class="w-full bg-slate-950 border border-red-100 rounded-xl pl-10 pr-4 py-2 text-base text-slate-100 focus:outline-none focus:border-indigo-500 transition">
+                    </div>
+
+                    <!-- Danh sách kết quả tìm kiếm -->
+                    <div id="searchUserResults" class="max-h-56 overflow-y-auto space-y-1.5 hide-scrollbar"></div>
+                </div>
+
+                <!-- Thẻ hiển thị sau khi đã chọn tên thành công -->
+                <div id="currentUserCard" class="hidden bg-gradient-to-r from-emerald-950/40 to-slate-900 border border-emerald-500/20 p-2.5 rounded-2xl flex items-center justify-between">
+                    <div class="flex items-center gap-1">
+                        <div class="w-10 h-10 rounded-full bg-emerald-200 border border-emerald-500/30 flex items-center justify-center">
+                            <i class="fa-solid fa-user-check text-emerald-800 font-black"></i>
+                        </div>
+                        <div>
+                            <span class="text-sm font-bold text-emerald-800 font-black font-bold block">TÀI KHOẢN ĐANG CHỌN</span>
+                            <span id="selectedUserName" class="text-base font-bold text-white">-</span>
+                        </div>
+                    </div>
+                    <button onclick="logout()" class="text-base bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-3 py-1.5 rounded-xl font-medium transition">
+                        Thoát <i class="fa-solid fa-right-from-bracket ml-1"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= TAB 3: DỰ ĐOÁN (MỞ KHÓA SAU KHI ĐĂNG NHẬP) ================= -->
+            <section id="tab-predict" class="hidden space-y-2.5">
+                
+                <!-- Chỉ số thu nhỏ (Mini Dashboard) cá nhân -->
+                <div class="bg-gradient-to-r from-indigo-950/50 via-slate-900 to-indigo-950/30 border border-indigo-500/20 p-2.5 rounded-2xl flex justify-between items-center shadow-lg">
+                    <div class="flex items-center gap-1">
+                        <div class="w-10 h-10 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center">
+                            <i class="fa-solid fa-bolt-lightning text-indigo-900 font-black"></i>
+                        </div>
+                        <div>
+                            <span id="userDashboardName" class="text-base font-bold text-white block">Nhân Viên</span>
+                            <span class="text-sm font-black font-medium text-white block">Đang hoạt động dự đoán</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <div class="text-right">
+                            <span class="text-[9px] text-slate-700 block">THỨ HẠNG</span>
+                            <span id="userDashboardRank" class="text-base font-bold text-amber-400"># -</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[9px] text-slate-700 block">ĐIỂM SỐ</span>
+                            <span id="userDashboardPoints" class="text-base font-bold text-white">-đ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BÌNH CHỌN DÀI HẠN (Vua phá lưới & Vô địch) -->
+                <div class="glass-card p-2.5 rounded-2xl space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-base font-bold uppercase tracking-wider text-indigo-900 font-black"><i class="fa-solid fa-award mr-1"></i> Dự đoán vô địch & phá lưới</h4>
+                        <span class="text-[9px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-bold">Chỉ chọn 1 lần</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-1">
+                        <div class="space-y-1">
+                            <label class="text-sm font-bold text-slate-700">Đội tuyển Vô địch:</label>
+                            <input id="inputChampion" type="text" placeholder="Ví dụ: Pháp, Đức..." class="w-full bg-slate-950 border border-red-100 rounded-lg p-2 text-base text-white focus:outline-none focus:border-indigo-500">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-sm font-bold text-slate-700">Vua Phá Lưới:</label>
+                            <input id="inputTopScorer" type="text" placeholder="Mbappe, Kane..." class="w-full bg-slate-950 border border-red-100 rounded-lg p-2 text-base text-white focus:outline-none focus:border-indigo-500">
+                        </div>
+                    </div>
+                    <button onclick="submitLongTermPredict()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white text-base font-bold py-2 rounded-xl transition shadow-lg shadow-indigo-600/15">
+                        <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Lưu bình chọn dài hạn
+                    </button>
+                </div>
+
+                <!-- Bộ lọc trạng thái đấu -->
+                <div class="flex gap-1.5 p-1 glass-card rounded-xl">
+                    <button onclick="setFilter('all')" id="filter-all" class="flex-1 text-center py-1.5 rounded-lg text-base font-medium bg-indigo-600 text-white transition">Tất cả</button>
+                    <button onclick="setFilter('pending')" id="filter-pending" class="flex-1 text-center py-1.5 rounded-lg text-base font-medium text-slate-700 hover:text-white transition">Hôm nay</button>
+                    <button onclick="setFilter('finished')" id="filter-finished" class="flex-1 text-center py-1.5 rounded-lg text-base font-medium text-slate-700 hover:text-white transition">Đã xong</button>
+                </div>
+
+                <!-- Lịch thi đấu và Bảng nhập Dự đoán -->
+                <div class="space-y-3">
+                    <h3 id="predictSectionTitle" class="text-base font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar-days text-indigo-900 font-black"></i> Các trận dự đoán hôm nay
+                    </h3>
+                    
+                    <div id="matchPredictList" class="space-y-3 max-h-[55vh] overflow-y-auto pr-1 custom-scroll">
+                        <div class="text-center py-8 text-slate-700 text-base">Đang tải lịch thi đấu...</div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- THOẠI ĐĂNG NHẬP ADMIN (Admin Login Modal) -->
+        <div id="adminLoginModal" class="hidden fixed inset-x-0 top-1/2 -translate-y-1/2 mx-auto max-w-xs bg-slate-900 border border-indigo-500/30 rounded-2xl p-3 shadow-lg z-50 space-y-2.5">
+            <div class="text-center space-y-1">
+                <div class="w-10 h-10 rounded-full bg-indigo-600/10 text-indigo-900 font-black flex items-center justify-center mx-auto text-lg border border-indigo-500/20">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h4 class="text-base font-bold text-white">Xác thực quyền Admin</h4>
+                <p class="text-sm font-bold text-slate-700">Nhập mật khẩu quản trị để thực hiện cấu hình.</p>
+            </div>
+            <div class="space-y-1">
+                <input id="adminPasswordInput" type="password" placeholder="Mật khẩu..." class="w-full bg-slate-950 border border-red-100 rounded-xl px-3 py-2 text-base text-white focus:outline-none focus:border-indigo-500 transition">
+            </div>
+            <div class="flex gap-1.5">
+                <button onclick="closeAdminLoginModal()" class="flex-1 bg-slate-800 hover:bg-slate-750 text-slate-300 text-base font-bold py-2 rounded-xl transition">Hủy bỏ</button>
+                <button onclick="submitAdminLogin()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white text-base font-bold py-2 rounded-xl transition">Xác nhận</button>
+            </div>
+        </div>
+
+        <!-- THÔNG BÁO POPUP TỰ CHẾ (Thay thế hoàn toàn alert) -->
+        <div id="customAlert" class="hidden fixed inset-x-0 top-1/2 -translate-y-1/2 mx-auto max-w-xs bg-slate-900 border border-indigo-500/30 rounded-2xl p-2.5 shadow-lg z-50 text-center space-y-3">
+            <div id="alertIcon" class="w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg"></div>
+            <div class="space-y-1">
+                <h4 id="alertTitle" class="text-base font-bold text-white">Thông báo</h4>
+                <p id="alertMsg" class="text-base text-white font-bold leading-relaxed">Nội dung tin nhắn...</p>
+            </div>
+            <button onclick="closeAlert()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-base font-bold px-3 py-1.5 rounded-lg transition">Đồng ý</button>
+        </div>
+        
+        <!-- BACKDROP ĐEN MỜ -->
+        <div id="alertOverlay" class="hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-45"></div>
+
+        <!-- THANH ĐIỀU HƯỚNG CHÂN TRANG (BOTTOM NAVIGATION) -->
+        
+<footer class="bg-white shadow-lg/90 border-t border-red-100 py-2 px-6 sticky bottom-0 z-40 backdrop-blur-xl shadow-lg">
+    <div class="flex justify-between items-center max-w-sm mx-auto">
+
+        <button onclick="switchTab('profile')" id="nav-profile"
+            class="flex flex-col items-center gap-1 group text-red-500">
+
+            <div class="w-10 h-6 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-user-gear text-lg"></i>
+            </div>
+
+            <span class="text-base font-semibold tracking-wide">
+                Cá Nhân
+            </span>
+        </button>
+
+        <button onclick="switchTab('predict')" id="nav-predict"
+            class="hidden flex flex-col items-center gap-1 group text-slate-700 hover:text-red-500">
+
+            <div class="w-10 h-6 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-futbol text-lg"></i>
+            </div>
+
+            <span class="text-base font-semibold tracking-wide">
+                Dự Đoán
+            </span>
+        </button>
+
+        <button onclick="switchTab('dashboard')" id="nav-dashboard"
+            class="flex flex-col items-center gap-1 group text-slate-700 hover:text-red-500">
+
+            <div class="w-10 h-6 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-trophy text-lg"></i>
+            </div>
+
+            <span class="text-base font-semibold tracking-wide">
+                BXH
+            </span>
+        </button>
+
+    </div>
+</footer>
+
+
+    </div>
+
+    <script>
+        // MẪU DỮ LIỆU KHỞI TẠO CHUẨN (Được cập nhật bởi LocalStorage hoặc Online API)
+        const DEFAULT_DB = {
+            users: [
+                { ID: "NV01", Name: "Nguyễn Văn Hùng", Department: "IT", Points: 15, Rank: 1 },
+                { ID: "NV02", Name: "Trần Thị Lan", Department: "Kế toán", Points: 12, Rank: 2 },
+                { ID: "NV03", Name: "Phạm Minh Hoàng", Department: "Nhân sự", Points: 10, Rank: 3 },
+                { ID: "NV04", Name: "Lê Văn Sơn", Department: "Bảo vệ", Points: 8, Rank: 4 },
+                { ID: "NV05", Name: "Nguyễn Hồng Nhung", Department: "Marketing", Points: 6, Rank: 5 }
+            ],
+            matches: [
+                { MatchID: "M01", HomeTeam: "Đức", AwayTeam: "Scotland", MatchTime: "2026-06-15 02:00", HomeScore: 5, AwayScore: 1, Status: "Đã kết thúc", Type: "Vòng bảng" },
+                { MatchID: "M02", HomeTeam: "Tây Ban Nha", AwayTeam: "Croatia", MatchTime: "2026-06-15 23:00", HomeScore: 3, AwayScore: 0, Status: "Đã kết thúc", Type: "Vòng bảng" },
+                { MatchID: "M03", HomeTeam: "Pháp", AwayTeam: "Áo", MatchTime: "2026-06-16 02:00", HomeScore: null, AwayScore: null, Status: "Chưa diễn ra", Type: "Vòng bảng" },
+                { MatchID: "M04", HomeTeam: "Ý", AwayTeam: "Albania", MatchTime: "2026-06-16 23:00", HomeScore: null, AwayScore: null, Status: "Chưa diễn ra", Type: "Vòng bảng" }
+            ],
+            predictions: [
+                { PredictionID: "P1", UserID: "NV01", MatchID: "M01", HomePredict: 3, AwayPredict: 1, Timestamp: "2026-06-14T20:00:00Z", PointsEarned: 2 },
+                { PredictionID: "P2", UserID: "NV01", MatchID: "M02", HomePredict: 3, AwayPredict: 0, Timestamp: "2026-06-14T20:10:00Z", PointsEarned: 3 }
+            ],
+            system: [
+                { UserID: "NV01", ChampionPredict: "Đức", TopScorerPredict: "Fullkrug" }
+            ]
+        };
+
+        // Biến toàn cục
+        let db = { ...DEFAULT_DB };
+        let API_URL = "https://script.google.com/macros/s/AKfycbzCPRE0WQjfju1ITF1mfv15Hd2ASYlkn2qFd21JkquD5ueGR9gaN_8EjuC6CfMMD3aI/exec";
+        let currentUser = null;
+        let currentFilter = "all"; 
+        let currentImportType = "users"; // "users" hoặc "matches"
+        let isAdminLoggedIn = false;
+
+        // Khởi chạy ứng dụng
+        window.addEventListener('DOMContentLoaded', () => {
+            // Tải dữ liệu từ LocalStorage hoặc gán dữ liệu ban đầu
+            const storedDb = localStorage.getItem('PREDICTOR_DB');
+            if (storedDb) {
+                db = JSON.parse(storedDb);
+            } else {
+                localStorage.setItem('PREDICTOR_DB', JSON.stringify(db));
+            }
+
+            // Kết nối Google Sheets tự động
+			updateConnectionStatus(true);
+			fetchDataFromSheets();
+
+            // Kiểm tra phiên đăng nhập người dùng
+            const savedUser = localStorage.getItem('PREDICTOR_USER');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                applyUserSession();
+                switchTab('predict');
+            } else {
+                switchTab('profile');
+            }
+
+            // Kiểm tra trạng thái Admin
+            const adminSession = localStorage.getItem('PREDICTOR_ADMIN_ACTIVE');
+            if (adminSession === 'true') {
+                setAdminMode(true);
+            }
+        });
+
+        // ------------------ ĐIỀU HƯỚNG & TRƯỢT MENU (SIDEBAR) ------------------
+        function toggleSidebar(isOpen) {
+            const drawer = document.getElementById('sidebarDrawer');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (isOpen) {
+                drawer.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function navigateFromSidebar(tabId) {
+            toggleSidebar(false);
+            switchTab(tabId);
+        }
+
+        // ------------------ KHU VỰC XỬ LÝ ADMIN ------------------
+        function openAdminLoginModal() {
+            toggleSidebar(false);
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+            document.getElementById('alertOverlay').classList.remove('hidden');
+            document.getElementById('adminPasswordInput').value = "";
+            document.getElementById('adminPasswordInput').focus();
+        }
+
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+            document.getElementById('alertOverlay').classList.add('hidden');
+        }
+
+        function submitAdminLogin() {
+            const password = document.getElementById('adminPasswordInput').value.trim();
+            if (password === "admin") {
+                setAdminMode(true);
+                closeAdminLoginModal();
+                showAlert('Thành công', 'Đăng nhập Admin thành công. Hệ thống đã mở khóa quyền quản trị!', 'success');
+            } else {
+                showAlert('Lỗi mật khẩu', 'Mật khẩu quản trị viên không chính xác!', 'error');
+            }
+        }
+
+        function setAdminMode(active) {
+            isAdminLoggedIn = active;
+            const loginSect = document.getElementById('adminLoginSection');
+            const panelSect = document.getElementById('adminPanelSection');
+            const consoleSect = document.getElementById('adminConsoleSection');
+
+            if (active) {
+                localStorage.setItem('PREDICTOR_ADMIN_ACTIVE', 'true');
+                loginSect.classList.add('hidden');
+                panelSect.classList.remove('hidden');
+                consoleSect.classList.remove('hidden');
+                renderAdminMatches();
+            } else {
+                localStorage.removeItem('PREDICTOR_ADMIN_ACTIVE');
+                loginSect.classList.remove('hidden');
+                panelSect.classList.add('hidden');
+                consoleSect.classList.add('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            setAdminMode(false);
+            toggleSidebar(false);
+            showAlert('Đăng xuất', 'Đã thoát chế độ Quản trị viên.', 'info');
+        }
+
+        function toggleAdminConsole(show) {
+            toggleSidebar(false);
+            const consoleSect = document.getElementById('adminConsoleSection');
+            if (show) {
+                consoleSect.classList.remove('hidden');
+                renderAdminMatches();
+                consoleSect.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                consoleSect.classList.add('hidden');
+            }
+        }
+
+
+
+        function updateConnectionStatus(isConnected) {
+            const statusBox = document.getElementById('connectionStatus');
+            if (isConnected) {
+                statusBox.innerHTML = `
+                    <span class="w-1 h-1 rounded-full bg-emerald-500"></span>
+                    <span>Online</span>
+                `;
+                statusBox.className = "flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-200 border border-emerald-500/20 text-[9px] text-emerald-800 font-black";
+            } else {
+                statusBox.innerHTML = `
+                    <span class="w-1 h-1 rounded-full bg-amber-500 animate-pulse"></span>
+                    <span>Offline</span>
+                `;
+                statusBox.className = "flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[9px] text-amber-400";
+            }
+        }
+
+        // ------------------ TẢI & ĐỒNG BỘ DỮ LIỆU GOOGLE SHEETS ------------------
+        function fetchDataFromSheets() {
+            if (!API_URL) return;
+            
+            fetch(`${API_URL}?action=getData`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.users && data.users.length > 0) db.users = data.users;
+                    if (data.matches && data.matches.length > 0) db.matches = data.matches;
+                    if (data.predictions && data.predictions.length > 0) db.predictions = data.predictions;
+                    if (data.system && data.system.length > 0) db.system = data.system;
+
+                    // Chuẩn hóa và xếp thứ hạng
+                    recalculatePointsAndRanks();
+                    saveLocalDB();
+
+                    renderDashboard();
+                    renderUserList();
+                    if (currentUser) {
+                        const updatedUser = db.users.find(u => u.ID === currentUser.ID);
+                        if (updatedUser) {
+                            currentUser = updatedUser;
+                            localStorage.setItem('PREDICTOR_USER', JSON.stringify(currentUser));
+                            applyUserSession();
+                        }
+                    }
+                    if (isAdminLoggedIn) {
+                        renderAdminMatches();
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi đồng bộ: ", error);
+                    showAlert('Kết nối thất bại', 'Không thể kéo dữ liệu online. Hiện đang sử dụng dữ liệu cục bộ.', 'warning');
+                    renderDashboard();
+                    renderUserList();
+                });
+        }
+
+        function postToSheets(payload, successMessage) {
+            if (!API_URL) {
+                // Chế độ Offline: ghi nhận trực tiếp vào LocalStorage
+                executeOfflineAction(payload);
+                showAlert('Lưu cục bộ', successMessage + ' (Lưu ý: chưa đồng bộ lên Sheet do chưa liên kết API)', 'info');
+                return;
+            }
+
+            fetch(API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Thực thi thêm cục bộ trước để giao diện mượt mà không bị delay
+                executeOfflineAction(payload);
+                showAlert('Thành công', successMessage || 'Cập nhật trực tuyến thành công!', 'success');
+                setTimeout(fetchDataFromSheets, 1200);
+            })
+            .catch(err => {
+                console.error("Lỗi gửi dữ liệu: ", err);
+                executeOfflineAction(payload);
+                showAlert('Đã lưu offline', 'Dữ liệu đã được lưu tạm trên máy này.', 'warning');
+            });
+        }
+
+        function executeOfflineAction(payload) {
+            if (payload.action === "submitPrediction") {
+                const idx = db.predictions.findIndex(p => p.UserID === payload.userId && p.MatchID === payload.matchId);
+                if (idx !== -1) {
+                    db.predictions[idx].HomePredict = payload.homePredict;
+                    db.predictions[idx].AwayPredict = payload.awayPredict;
+                    db.predictions[idx].Timestamp = new Date().toISOString();
+                } else {
+                    db.predictions.push({
+                        PredictionID: "P" + (db.predictions.length + 1),
+                        UserID: payload.userId,
+                        MatchID: payload.matchId,
+                        HomePredict: payload.homePredict,
+                        AwayPredict: payload.awayPredict,
+                        Timestamp: new Date().toISOString(),
+                        PointsEarned: 0
+                    });
+                }
+            } else if (payload.action === "submitChampionTopScorer") {
+                const idx = db.system.findIndex(s => s.UserID === payload.userId);
+                if (idx !== -1) {
+                    db.system[idx].ChampionPredict = payload.champion;
+                    db.system[idx].TopScorerPredict = payload.topScorer;
+                } else {
+                    db.system.push({
+                        UserID: payload.userId,
+                        ChampionPredict: payload.champion,
+                        TopScorerPredict: payload.topScorer
+                    });
+                }
+            } else if (payload.action === "updateScores") {
+                const match = db.matches.find(m => m.MatchID === payload.matchId);
+                if (match) {
+                    match.HomeScore = payload.homeScore;
+                    match.AwayScore = payload.awayScore;
+                    match.Status = payload.homeScore !== null ? "Đã kết thúc" : "Chưa diễn ra";
+                }
+            }
+            recalculatePointsAndRanks();
+            saveLocalDB();
+            renderDashboard();
+            if (currentUser) applyUserSession();
+        }
+
+        function saveLocalDB() {
+            localStorage.setItem('PREDICTOR_DB', JSON.stringify(db));
+        }
+
+        // Tự động tính điểm và xếp hạng lại dựa trên tỷ số thực tế
+        function recalculatePointsAndRanks() {
+            // Khởi tạo điểm nhân viên về 0
+            db.users.forEach(u => u.Points = 0);
+
+            // Duyệt qua từng dự đoán để đối chiếu tỷ số thực tế
+            db.predictions.forEach(p => {
+                const match = db.matches.find(m => m.MatchID === p.MatchID);
+                if (match && match.HomeScore !== null && match.AwayScore !== null && match.Status === "Đã kết thúc") {
+                    const realHome = Number(match.HomeScore);
+                    const realAway = Number(match.AwayScore);
+                    const predHome = Number(p.HomePredict);
+                    const predAway = Number(p.AwayPredict);
+
+                    let pts = 0;
+                    if (realHome === predHome && realAway === predAway) {
+                        pts = 3; // Đúng tỷ số: 3 điểm
+                    } else if (
+                        (realHome > realAway && predHome > predAway) ||
+                        (realHome < realAway && predHome < predAway) ||
+                        (realHome === realAway && predHome === predAway)
+                    ) {
+                        pts = 2; // Đúng kết quả: 2 điểm
+                    } else {
+                        pts = 0; // Đoán sai: 0 điểm
+                    }
+
+                    //p.PointsEarned = pts;
+
+                    // Cộng vào tổng điểm của User
+                    const user = db.users.find(u => u.ID === p.UserID);
+                    if (user) {
+                        //user.Points += pts;
+                    }
+                }
+            });
+
+            // Sắp xếp BXH
+            db.users.sort((a, b) => b.Points - a.Points);
+            db.users.forEach((u, idx) => u.Rank = idx + 1);
+        }
+
+        // ------------------ IMPORT EXCEL / CSV CHUYÊN NGHIỆP ------------------
+        function setImportType(type) {
+            currentImportType = type;
+            const btnU = document.getElementById('btnImportUsers');
+            const btnM = document.getElementById('btnImportMatches');
+            const instruct = document.getElementById('importInstructions');
+            const area = document.getElementById('importTextarea');
+
+            if (type === 'users') {
+                btnU.className = "px-2 py-0.5 rounded text-[9px] font-bold bg-indigo-600 text-white";
+                btnM.className = "px-2 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-700";
+                instruct.innerText = "Copy bảng nhân viên từ Excel (ID, Họ Tên, Đơn Vị Công Tác) rồi dán vào đây:";
+                area.placeholder = "Ví dụ:\nNV01\tNguyễn Văn Hùng\tCông nghệ thông tin\nNV02\tTrần Thị Lan\tKế toán";
+            } else {
+                btnU.className = "px-2 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-700";
+                btnM.className = "px-2 py-0.5 rounded text-[9px] font-bold bg-indigo-600 text-white";
+                instruct.innerText = "Copy bảng trận đấu từ Excel (Mã Trận, Đội Nhà, Đội Khách, Giờ Thi Đấu [YYYY-MM-DD HH:MM]) rồi dán vào đây:";
+                area.placeholder = "Ví dụ:\nM05\tÝ\tTây Ban Nha\t2026-06-20 02:00\nM06\tAnh\tĐan Mạch\t2026-06-20 23:00";
+            }
+        }
+
+        function executeImport() {
+            const text = document.getElementById('importTextarea').value.trim();
+            if (!text) {
+                showAlert('Lỗi dữ liệu', 'Vui lòng dán dữ liệu Excel/CSV vào ô nhập!', 'warning');
+                return;
+            }
+
+            const lines = text.split('\n');
+            let successCount = 0;
+
+            if (currentImportType === 'users') {
+                const newUsers = [];
+                lines.forEach(line => {
+                    const cols = line.split('\t'); // Tách theo tab (Excel mặc định khi copy)
+                    if (cols.length >= 2) {
+                        const id = cols[0].trim();
+                        const name = cols[1].trim();
+                        const dept = cols[2] ? cols[2].trim() : 'Không rõ';
+                        newUsers.push({ ID: id, Name: name, Department: dept, Points: 0, Rank: 999 });
+                        successCount++;
+                    }
+                });
+
+                if (newUsers.length > 0) {
+                    db.users = newUsers;
+                    recalculatePointsAndRanks();
+                    saveLocalDB();
+                    renderDashboard();
+                    renderUserList();
+                    showAlert('Thành công', `Đã import thành công ${successCount} nhân viên vào danh sách hệ thống.`, 'success');
+                }
+            } else {
+                const newMatches = [];
+                lines.forEach(line => {
+                    const cols = line.split('\t');
+                    if (cols.length >= 4) {
+                        const matchId = cols[0].trim();
+                        const home = cols[1].trim();
+                        const away = cols[2].trim();
+                        const time = cols[3].trim();
+                        newMatches.push({
+                            MatchID: matchId,
+                            HomeTeam: home,
+                            AwayTeam: away,
+                            MatchTime: time,
+                            HomeScore: null,
+                            AwayScore: null,
+                            Status: "Chưa diễn ra",
+                            Type: "Vòng bảng"
+                        });
+                        successCount++;
+                    }
+                });
+
+                if (newMatches.length > 0) {
+                    db.matches = newMatches;
+                    recalculatePointsAndRanks();
+                    saveLocalDB();
+                    renderDashboard();
+                    renderAdminMatches();
+                    showAlert('Thành công', `Đã import thành công ${successCount} trận đấu mới vào lịch thi đấu.`, 'success');
+                }
+            }
+
+            document.getElementById('importTextarea').value = "";
+        }
+
+        // ------------------ GIAO DIỆN ADMIN CẬP NHẬT TỶ SỐ THỰC TẾ ------------------
+        function renderAdminMatches() {
+            const container = document.getElementById('adminMatchUpdateList');
+            container.innerHTML = '';
+
+            if (db.matches.length === 0) {
+                container.innerHTML = `<div class="text-center py-2 text-slate-700 text-sm font-bold">Chưa có trận đấu nào</div>`;
+                return;
+            }
+
+            db.matches.forEach(match => {
+                const homeScoreVal = match.HomeScore !== null ? match.HomeScore : '';
+                const awayScoreVal = match.AwayScore !== null ? match.AwayScore : '';
+
+                const row = document.createElement('div');
+                row.className = "bg-slate-950 p-2 rounded-xl flex items-center justify-between gap-1 border border-red-100";
+                row.innerHTML = `
+                    <div class="flex-1 min-w-0">
+                        <span class="text-[9px] text-slate-700 block truncate">${match.MatchID} • ${match.MatchTime}</span>
+                        <span class="text-sm font-bold font-bold text-black font-bold block truncate">${match.HomeTeam} - ${match.AwayTeam}</span>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <input id="admin-home-${match.MatchID}" type="number" value="${homeScoreVal}" placeholder="-" class="w-8 h-8 bg-slate-900 border border-slate-700 rounded-lg text-center text-base font-bold text-white">
+                        <span class="text-slate-700 text-base">:</span>
+                        <input id="admin-away-${match.MatchID}" type="number" value="${awayScoreVal}" placeholder="-" class="w-8 h-8 bg-slate-900 border border-slate-700 rounded-lg text-center text-base font-bold text-white">
+                        <button onclick="submitAdminScore('${match.MatchID}')" class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-white transition">
+                            <i class="fa-solid fa-check text-sm font-bold"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function submitAdminScore(matchId) {
+            const homeVal = document.getElementById(`admin-home-${matchId}`).value;
+            const awayVal = document.getElementById(`admin-away-${matchId}`).value;
+
+            const homeScore = homeVal !== '' ? parseInt(homeVal) : null;
+            const awayScore = awayVal !== '' ? parseInt(awayVal) : null;
+
+            const payload = {
+                action: "updateScores",
+                matchId: matchId,
+                homeScore: homeScore,
+                awayScore: awayScore
+            };
+
+            postToSheets(payload, `Đã cập nhật kết quả chính thức: ${homeScore} - ${awayScore}`);
+        }
+
+        // ------------------ ĐIỀU HƯỚNG TAB CHUNG ------------------
+        function switchTab(tabId) {
+            const tabs = ['dashboard', 'profile', 'predict'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                if (t === tabId) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+
+                const btn = document.getElementById(`nav-${t}`);
+                if (btn) {
+                    if (t === tabId) {
+                        btn.className = "flex flex-col items-center gap-1 group text-indigo-900 font-black";
+                    } else {
+                        btn.className = "flex flex-col items-center gap-1 group text-slate-700 hover:text-indigo-900 font-black";
+                    }
+                }
+            });
+
+            if (tabId === 'predict') {
+                renderPredictSection();
+            }
+        }
+
+        // ------------------ TAB 1: HIỂN THỊ TRƯỜNG ĐUA (LEADERBOARD) ------------------
+        function renderDashboard() {
+            document.getElementById('statUsersCount').innerText = db.users.length;
+            document.getElementById('statMatchesCount').innerText = db.matches.length;
+            document.getElementById('statPredictsCount').innerText = db.predictions.length;
+
+            const listContainer = document.getElementById('leaderboardList');
+            listContainer.innerHTML = '';
+
+            db.users.forEach((user, idx) => {
+                const rank = idx + 1;
+                let rankBadge = '';
+                
+                if (rank === 1) {
+                    rankBadge = '<span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-bold text-base flex items-center justify-center shadow-lg shadow-amber-400/20"><i class="fa-solid fa-crown"></i></span>';
+                } else if (rank === 2) {
+                    rankBadge = '<span class="w-6 h-6 rounded-full bg-slate-300 text-slate-950 font-bold text-base flex items-center justify-center shadow-lg shadow-slate-300/20">2</span>';
+                } else if (rank === 3) {
+                    rankBadge = '<span class="w-6 h-6 rounded-full bg-amber-700 text-white font-bold text-base flex items-center justify-center shadow-lg shadow-amber-700/20">3</span>';
+                } else {
+                    rankBadge = `<span class="text-base font-semibold text-slate-700 w-6 text-center">${rank}</span>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = "glass-card hover:border-indigo-500/30 p-3 rounded-xl flex items-center justify-between transition-all duration-200";
+                
+                if (currentUser && currentUser.ID === user.ID) {
+                    card.className = "bg-gradient-to-r from-indigo-950/40 to-slate-900 border border-indigo-500/30 p-3 rounded-xl flex items-center justify-between shadow-md shadow-indigo-500/5";
+                }
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-1">
+                        ${rankBadge}
+                        <div>
+                            <span class="text-base font-bold text-black flex items-center gap-1.5">
+                                ${user.Name}
+                                ${currentUser && currentUser.ID === user.ID ? '<span class="text-[9px] bg-indigo-500/20 text-indigo-300 px-1.5 py-0.2 rounded font-bold uppercase">Tôi</span>' : ''}
+                            </span>
+                            <span class="text-sm font-bold text-slate-700 block">${user.Department || 'Phòng ban'} • ID: ${user.ID}</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-base font-bold text-black">${user.Points} điểm</span>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        // ------------------ TAB 2: TÌM KIẾM NHÂN VIÊN ------------------
+        function renderUserList(filterWord = "") {
+            const resultsContainer = document.getElementById('searchUserResults');
+            resultsContainer.innerHTML = '';
+
+		const filtered = db.users.filter(u => {
+			const name = String(u.Name || '').toLowerCase().trim();
+			const id = String(u.ID || '').toLowerCase().trim();
+			const keyword = String(filterWord || '').toLowerCase().trim();
+
+			return name.includes(keyword) || id.includes(keyword);
+		});
+
+            if (filtered.length === 0) {
+                resultsContainer.innerHTML = `<div class="text-center py-2 text-slate-700 text-base">Không tìm thấy tài khoản tương ứng</div>`;
+                return;
+            }
+
+            filtered.forEach(user => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left bg-slate-900/40 hover:bg-indigo-950/20 border border-red-100/80 hover:border-indigo-500/30 p-2.5 rounded-xl flex items-center justify-between transition";
+                btn.onclick = () => selectUser(user);
+                
+                btn.innerHTML = `
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-base text-slate-300 font-bold">
+                            ${user.Name.charAt(0)}
+                        </div>
+                        <div>
+                            <span class="text-base font-semibold text-black block">${user.Name}</span>
+                            <span class="text-sm font-bold text-slate-700 block">${user.Department || 'Phòng ban'} • ${user.ID}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-600 text-sm font-bold mr-1"></i>
+                `;
+                resultsContainer.appendChild(btn);
+            });
+        }
+
+        function filterUserList() {
+            const q = document.getElementById('userSearchInput').value;
+            renderUserList(q);
+        }
+
+        function selectUser(user) {
+            currentUser = user;
+            localStorage.setItem('PREDICTOR_USER', JSON.stringify(user));
+            document.getElementById('userSearchInput').value = "";
+            renderUserList();
+
+            applyUserSession();
+
+            showAlert(
+                'Thành công',
+                `Chào mừng ${user.Name} trở lại! Hệ thống đã kích hoạt và chuyển bạn đến giao diện 'Dự đoán'.`,
+                'success'
+            );
+
+            setTimeout(() => {
+                switchTab('predict');
+            }, 1000);
+        }
+
+        function applyUserSession() {
+            if (!currentUser) return;
+
+            document.getElementById('currentUserCard').classList.remove('hidden');
+            document.getElementById('selectedUserName').innerText = `${currentUser.Name} (${currentUser.Department})`;
+
+            // Hiện Tab Dự đoán dưới footer & Sidebar
+            document.getElementById('nav-predict').classList.remove('hidden');
+            document.getElementById('sidebarPredictBtn').classList.remove('hidden');
+
+            document.getElementById('userDashboardName').innerText = currentUser.Name;
+            document.getElementById('userDashboardRank').innerText = `#${currentUser.Rank || '-'}`;
+            document.getElementById('userDashboardPoints').innerText = `${currentUser.Points || 0}đ`;
+
+            const sysRecord = db.system.find(s => s.UserID === currentUser.ID);
+            if (sysRecord) {
+                document.getElementById('inputChampion').value = sysRecord.ChampionPredict || "";
+                document.getElementById('inputTopScorer').value = sysRecord.TopScorerPredict || "";
+            } else {
+                document.getElementById('inputChampion').value = "";
+                document.getElementById('inputTopScorer').value = "";
+            }
+
+            renderDashboard();
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('PREDICTOR_USER');
+            
+            document.getElementById('currentUserCard').classList.add('hidden');
+            document.getElementById('nav-predict').classList.add('hidden');
+            document.getElementById('sidebarPredictBtn').classList.add('hidden');
+
+            document.getElementById('inputChampion').value = "";
+            document.getElementById('inputTopScorer').value = "";
+
+            switchTab('profile');
+            showAlert('Đăng xuất', 'Đã xóa phiên tài khoản hiện tại.', 'info');
+        }
+
+        // ------------------ TAB 3: HIỂN THỊ DỰ ĐOÁN & KHÓA THEO GIỜ ĐẤU ------------------
+        function setFilter(status) {
+            currentFilter = status;
+            
+            const btnAll = document.getElementById('filter-all');
+            const btnPending = document.getElementById('filter-pending');
+            const btnFinished = document.getElementById('filter-finished');
+
+            [btnAll, btnPending, btnFinished].forEach(btn => {
+                btn.className = "flex-1 text-center py-1.5 rounded-lg text-base font-medium text-slate-700 hover:text-white transition";
+            });
+
+            document.getElementById(`filter-${status}`).className = "flex-1 text-center py-1.5 rounded-lg text-base font-medium bg-indigo-600 text-white transition";
+
+            renderPredictSection();
+        }
+
+        function renderPredictSection() {
+            if (!currentUser) return;
+
+            const container = document.getElementById('matchPredictList');
+            container.innerHTML = '';
+
+            const sectTitle = document.getElementById('predictSectionTitle');
+            if (currentFilter === 'all') {
+                sectTitle.innerHTML = '<i class="fa-solid fa-list-check text-indigo-900 font-black"></i> Toàn bộ lịch thi đấu';
+            } else if (currentFilter === 'pending') {
+                sectTitle.innerHTML = '<i class="fa-regular fa-clock text-indigo-900 font-black"></i> Các trận chuẩn bị diễn ra';
+            } else {
+                sectTitle.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-800 font-black"></i> Trận đấu đã kết thúc';
+            }
+
+			// ===== THỜI GIAN HIỆN TẠI =====
+			const now = new Date();
+
+			const todayStr =
+				now.getFullYear() + '-' +
+				String(now.getMonth() + 1).padStart(2, '0') + '-' +
+				String(now.getDate()).padStart(2, '0');
+
+			// ===== LẤY TRẬN HÔM NAY =====
+			const todayMatches = db.matches.filter(m => {
+				if (!m.MatchTime) return false;
+
+				const matchDate = new Date(
+					m.MatchTime.replace(' ', 'T')
+				);
+
+				const matchStr =
+					matchDate.getFullYear() + '-' +
+					String(matchDate.getMonth() + 1).padStart(2, '0') + '-' +
+					String(matchDate.getDate()).padStart(2, '0');
+
+				return matchStr === todayStr;
+			});
+
+			let matchesToShow = [];
+
+			// ================= TAB TẤT CẢ =================
+			// ================= TAB TẤT CẢ =================
+			// Hiện toàn bộ lịch thi đấu
+			if (currentFilter === 'all') {
+
+				matchesToShow = [...db.matches];
+			}
+
+			// ================= TAB CHƯA ĐẤU =================
+			else if (currentFilter === 'pending') {
+
+				matchesToShow = todayMatches.filter(m => {
+					const matchDate = new Date(
+						m.MatchTime.replace(' ', 'T')
+					);
+
+					return (
+						m.Status !== "Đã kết thúc" &&
+						now < matchDate
+					);
+				});
+			}
+
+			// ================= TAB ĐÃ XONG =================
+			else if (currentFilter === 'finished') {
+
+				matchesToShow = db.matches.filter(m => {
+					if (!m.MatchTime) return false;
+
+					const matchDate = new Date(
+						m.MatchTime.replace(' ', 'T')
+					);
+
+					return (
+						m.Status === "Đã kết thúc" ||
+						now >= matchDate
+					);
+				});
+			}
+
+            if (matchesToShow.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-slate-700 text-base">Không có trận đấu nào khớp với điều kiện lọc</div>`;
+                return;
+            }
+
+            matchesToShow.forEach(match => {
+                const prediction = db.predictions.find(p => p.UserID === currentUser.ID && p.MatchID === match.MatchID);
+				const pointsEarned = Number(prediction?.PointsEarned || 0);
+                const homePredVal = prediction ? prediction.HomePredict : '';
+                const awayPredVal = prediction ? prediction.AwayPredict : '';
+
+                const card = document.createElement('div');
+                if (match.Status === "Đã kết thúc") {
+
+					card.className =
+						"bg-gradient-to-br from-orange-950/40 to-slate-900 border border-orange-500/30 p-2.5 rounded-2xl space-y-3 relative overflow-hidden transition shadow-lg shadow-orange-500/10";
+
+				} else {
+
+					card.className =
+						"glass-card p-2.5 rounded-2xl space-y-3 relative overflow-hidden transition hover:border-indigo-500/20";
+				}
+
+                // Đánh giá trạng thái KHÓA bình chọn dựa trên GIỜ THI ĐẤU thực tế
+				// ===== KHÓA BÌNH CHỌN =====
+				let isLocked = true;
+
+				if (match.MatchTime) {
+
+					const now = new Date();
+
+					const matchDate = new Date(
+						match.MatchTime.replace(' ', 'T')
+					);
+
+					// ===== NGÀY HÔM NAY VN =====
+					const vnNow = new Date(
+						now.toLocaleString('en-US', {
+							timeZone: 'Asia/Ho_Chi_Minh'
+						})
+					);
+
+					const vnMatch = new Date(
+						matchDate.toLocaleString('en-US', {
+							timeZone: 'Asia/Ho_Chi_Minh'
+						})
+					);
+
+					const todayStr =
+						vnNow.getFullYear() + '-' +
+						String(vnNow.getMonth() + 1).padStart(2, '0') + '-' +
+						String(vnNow.getDate()).padStart(2, '0');
+
+					const matchStr =
+						vnMatch.getFullYear() + '-' +
+						String(vnMatch.getMonth() + 1).padStart(2, '0') + '-' +
+						String(vnMatch.getDate()).padStart(2, '0');
+
+					// ===== CHỈ MỞ BÌNH CHỌN:
+					// 1. Đúng ngày hôm nay
+					// 2. Chưa tới giờ đá
+					if (
+						todayStr === matchStr &&
+						now < matchDate &&
+						match.Status !== "Đã kết thúc"
+					) {
+						isLocked = false;
+					}
+				}
+
+                // Nhãn trạng thái & Điểm cộng
+                let pointsLabel = '';
+                let statusHeader = '';
+
+                if (match.Status === "Đã kết thúc") {
+                    //statusHeader = `<span class="text-[9px] bg-slate-800 text-slate-700 px-2 py-0.5 rounded font-bold">Xong: ${match.HomeScore} - ${match.AwayScore}</span>`;
+					statusHeader = `
+					<div class="flex items-center gap-1 bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 rounded-lg">
+
+						<span class="text-sm font-bold text-orange-300 font-semibold uppercase tracking-wide">
+							Kết thúc
+						</span>
+
+						<span class="text-xl font-black text-orange-500">
+							${match.HomeScore} - ${match.AwayScore}
+						</span>
+
+						<span class="text-base font-black text-emerald-800 font-black">
+							+${pointsEarned}đ
+						</span>
+
+					</div>
+					`;
+					
+                    if (prediction && prediction.PointsEarned !== undefined) {
+                        const pts = Number(prediction.PointsEarned);
+                        if (pts > 0) {
+                            pointsLabel = `<span class="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[9px] font-bold px-3 py-1 rounded-bl-xl shadow-lg">+${pts} điểm</span>`;
+                        } else {
+                            pointsLabel = `<span class="absolute top-0 right-0 bg-slate-800 text-slate-700 text-[9px] font-bold px-3 py-1 rounded-bl-xl">0 điểm</span>`;
+                        }
+                    }
+                } else if (isLocked) {
+                    //statusHeader = `<span class="text-[9px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded font-bold"><i class="fa-solid fa-lock mr-0.5"></i> Đã đóng bình chọn</span>`;
+					statusHeader = `
+					<div class="flex items-center gap-1.5 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-xl">
+						
+						<i class="fa-solid fa-lock text-red-400 text-sm font-bold"></i>
+
+						<span class="text-sm font-bold text-red-300 font-semibold uppercase">
+							Đã khóa cược
+						</span>
+
+					</div>
+					`;
+					
+                } else {
+                    //statusHeader = `<span class="text-[9px] bg-indigo-500/10 text-indigo-300 px-2 py-0.5 rounded font-bold animate-pulse">Đang mở bình chọn</span>`;
+					statusHeader = `
+					<div class="flex items-center gap-1.5 bg-emerald-200 border border-emerald-500/20 px-3 py-1 rounded-xl animate-pulse">
+						
+						<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+
+						<span class="text-sm font-bold text-emerald-300 font-semibold uppercase tracking-wide">
+							Đang mở cược
+						</span>
+
+					</div>
+					`;	
+                }
+
+                let displayTime = 'Chưa định ngày';
+
+				if (match.MatchTime) {
+
+					const matchDate = new Date(
+						match.MatchTime.replace(' ', 'T')
+					);
+
+					const day = String(matchDate.getDate()).padStart(2, '0');
+					const month = String(matchDate.getMonth() + 1).padStart(2, '0');
+					const hour = String(matchDate.getHours()).padStart(2, '0');
+					const minute = String(matchDate.getMinutes()).padStart(2, '0');
+
+					displayTime = `${day}/${month} • ${hour}:${minute}`;
+				}
+
+                card.innerHTML = `
+                    ${pointsLabel}
+                    <div class="flex justify-between items-center text-base">
+                        <span class="text-slate-700 font-medium text-sm font-bold"><i class="fa-regular fa-clock mr-1"></i> ${displayTime}</span>
+                        ${statusHeader}
+                    </div>
+
+                    <div class="grid grid-cols-7 items-center gap-1 py-1">
+                        <div class="col-span-2 text-right">
+                            <span class="text-base font-bold text-black font-bold block truncate">${match.HomeTeam}</span>
+                            <span class="text-[8px] text-slate-700 block">CHỦ NHÀ</span>
+                        </div>
+
+                        <!-- Điểm số dự đoán -->
+                        <div class="col-span-1 flex justify-center">
+                            <input id="pred-home-${match.MatchID}" type="number" min="0" value="${homePredVal}" 
+                                   ${(match.Status === 'Đã kết thúc' || isLocked) ? 'disabled' : ''} 
+                                   placeholder="-" 
+                                   class="w-10 h-10 bg-slate-950 border border-red-100 rounded-xl text-center text-base font-extrabold text-white focus:outline-none focus:border-indigo-500 transition [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none disabled:opacity-60 disabled:bg-slate-900/40">
+                        </div>
+
+                        <div class="col-span-1 text-center">
+                            <span class="text-base font-bold text-indigo-500">vs</span>
+                        </div>
+
+                        <div class="col-span-1 flex justify-center">
+                            <input id="pred-away-${match.MatchID}" type="number" min="0" value="${awayPredVal}" 
+                                   ${(match.Status === 'Đã kết thúc' || isLocked) ? 'disabled' : ''} 
+                                   placeholder="-" 
+                                   class="w-10 h-10 bg-slate-950 border border-red-100 rounded-xl text-center text-base font-extrabold text-white focus:outline-none focus:border-indigo-500 transition [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none disabled:opacity-60 disabled:bg-slate-900/40">
+                        </div>
+
+                        <div class="col-span-2 text-left">
+                            <span class="text-base font-bold text-black font-bold block truncate">${match.AwayTeam}</span>
+                            <span class="text-[8px] text-slate-700 block">KHÁCH</span>
+                        </div>
+                    </div>
+
+                    ${(match.Status !== 'Đã kết thúc' && !isLocked) ? `
+                        <button onclick="saveMatchPredict('${match.MatchID}')" class="w-full bg-slate-950/50 hover:bg-indigo-600/20 text-indigo-900 font-black hover:text-white border border-indigo-500/20 hover:border-indigo-500 text-base font-bold py-1.5 rounded-xl transition-all flex items-center justify-center gap-1.5">
+							<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Lưu tỉ số trận đấu
+                        </button>
+                    ` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function saveMatchPredict(matchId) {
+            if (!currentUser) return;
+
+            // Kiểm tra lại điều kiện giờ giấc trước khi gửi để đảm bảo an toàn tuyệt đối
+            const match = db.matches.find(m => m.MatchID === matchId);
+            if (match && match.MatchTime) {
+                const matchDate = new Date(match.MatchTime);
+                if (new Date() >= matchDate) {
+                    showAlert('Lỗi khóa bình chọn', 'Trận đấu này đã đến giờ thi đấu, không thể thay đổi dự đoán!', 'error');
+                    renderPredictSection();
+                    return;
+                }
+            }
+
+            const homeInput = document.getElementById(`pred-home-${matchId}`).value;
+            const awayInput = document.getElementById(`pred-away-${matchId}`).value;
+
+            if (homeInput === '' || awayInput === '') {
+                showAlert('Thiếu thông tin', 'Vui lòng điền đầy đủ cả 2 ô tỉ số!', 'warning');
+                return;
+            }
+
+            const homeVal = parseInt(homeInput);
+            const awayVal = parseInt(awayInput);
+
+            if (homeVal < 0 || awayVal < 0) {
+                showAlert('Không hợp lệ', 'Tỉ số trận đấu không được âm!', 'warning');
+                return;
+            }
+
+            const payload = {
+                action: "submitPrediction",
+                userId: currentUser.ID,
+                matchId: matchId,
+                homePredict: homeVal,
+                awayPredict: awayVal
+            };
+
+            postToSheets(payload, `Đã lưu dự đoán tỉ số ${homeVal} - ${awayVal} thành công.`);
+        }
+
+        function submitLongTermPredict() {
+            if (!currentUser) return;
+
+            const champion = document.getElementById('inputChampion').value.trim();
+            const topScorer = document.getElementById('inputTopScorer').value.trim();
+
+            if (!champion && !topScorer) {
+                showAlert('Cảnh báo', 'Vui lòng nhập ít nhất 1 dự đoán!', 'warning');
+                return;
+            }
+
+            const payload = {
+                action: "submitChampionTopScorer",
+                userId: currentUser.ID,
+                champion: champion,
+                topScorer: topScorer
+            };
+
+            postToSheets(payload, 'Đã lưu lựa chọn Vô địch và Vua phá lưới.');
+        }
+
+        // ------------------ THÔNG BÁO TỰ CHẾ ------------------
+        function showAlert(title, msg, type = 'info') {
+            const modal = document.getElementById('customAlert');
+            const overlay = document.getElementById('alertOverlay');
+            const iconBox = document.getElementById('alertIcon');
+
+            document.getElementById('alertTitle').innerText = title;
+            document.getElementById('alertMsg').innerText = msg;
+
+            if (type === 'success') {
+                iconBox.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                iconBox.className = "w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg bg-emerald-200 text-emerald-800 font-black border border-emerald-500/20";
+            } else if (type === 'error') {
+                iconBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                iconBox.className = "w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg bg-red-500/10 text-red-400 border border-red-500/20";
+            } else if (type === 'warning') {
+                iconBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                iconBox.className = "w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg bg-amber-500/10 text-amber-400 border border-amber-500/20";
+            } else {
+                iconBox.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+                iconBox.className = "w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg bg-indigo-500/10 text-indigo-900 font-black border border-indigo-500/20";
+            }
+
+            modal.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        }
+
+        function closeAlert() {
+            document.getElementById('customAlert').classList.add('hidden');
+            document.getElementById('alertOverlay').classList.add('hidden');
+        }
+    </script>
+
+<script>
+function autoUpdatePointsEarned(){
+
+    if(!window.db || !db.predictions || !db.matches) return;
+
+    db.predictions.forEach(p=>{
+
+        const match = db.matches.find(m=>m.MatchID==p.MatchID);
+
+        if(!match) return;
+
+        if(match.HomeScore!=='' && match.AwayScore!==''){
+
+            if(
+                String(p.HomePredict)===String(match.HomeScore) &&
+                String(p.AwayPredict)===String(match.AwayScore)
+            ){
+                p.PointsEarned = 3;
+            }else{
+                p.PointsEarned = 0;
+            }
+        }
+
+    });
+
+}
+setInterval(autoUpdatePointsEarned,3000);
+</script>
+
+</body>
+</html>
