@@ -433,7 +433,8 @@ max-height:20px!important;
                 <!-- Admin cập nhật tỷ số thực tế -->
                 <div class="pt-3 border-t border-red-100/80 space-y-2">
                     <label class="text-sm font-bold text-amber-400 font-bold block"><i class="fa-solid fa-pen-to-square"></i> CẬP NHẬT TỶ SỐ THỰC TẾ & TÍNH ĐIỂM:</label>
-                    <div id="adminMatchUpdateList" class="max-h-48 overflow-y-auto space-y-1.5 hide-scrollbar">
+                    <div id="adminMatchUpdateList"
+						class="max-h-[72vh] overflow-y-auto space-y-2 hide-scrollbar pr-1">
                         <!-- Danh sách trận đấu cập nhật tỷ số -->
                     </div>
                 </div>
@@ -480,26 +481,14 @@ max-height:20px!important;
 
             <!-- ================= TAB 2: CÁ NHÂN (ĐĂNG NHẬP / CHỌN TÊN) ================= -->
             <section id="tab-profile" class="hidden space-y-3">
-                <div class="text-center py-2">
+                <!--<div class="text-center py-2">
                     <div class="w-16 h-16 rounded-full bg-slate-800 border-2 border-indigo-500/30 mx-auto flex items-center justify-center mb-3">
                         <i class="fa-regular fa-user text-2xl text-slate-300"></i>
                     </div>
                     <h2 class="text-lg font-bold text-white">XÁC MINH CÁ NHÂN</h2>
                     <p class="text-base text-slate-700 max-w-xs mx-auto mt-1">Chọn chính xác tên của bạn để mở khóa bảng dự đoán cá nhân của riêng mình.</p>
                 </div>
-
-                <!-- HỘP TÌM KIẾM THÔNG MINH (Search Box) -->
-                <div class="bg-slate-900/90 border border-red-100 p-2.5 rounded-2xl shadow-lg space-y-3">
-                    <label class="block text-base font-semibold text-indigo-900 font-black uppercase tracking-wider">Tìm kiếm tài khoản nhanh</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-700 text-base"></i>
-                        <input id="userSearchInput" type="text" oninput="filterUserList()" placeholder="Nhập tên nhân viên..." class="w-full bg-slate-950 border border-red-100 rounded-xl pl-10 pr-4 py-2 text-base text-slate-100 focus:outline-none focus:border-indigo-500 transition">
-                    </div>
-
-                    <!-- Danh sách kết quả tìm kiếm -->
-                    <div id="searchUserResults" class="max-h-56 overflow-y-auto space-y-1.5 hide-scrollbar"></div>
-                </div>
-
+				
                 <!-- Thẻ hiển thị sau khi đã chọn tên thành công -->
                 <div id="currentUserCard" class="hidden bg-gradient-to-r from-emerald-950/40 to-slate-900 border border-emerald-500/20 p-2.5 rounded-2xl flex items-center justify-between">
                     <div class="flex items-center gap-1">
@@ -515,6 +504,50 @@ max-height:20px!important;
                         Thoát <i class="fa-solid fa-right-from-bracket ml-1"></i>
                     </button>
                 </div>
+				
+                <!-- HỘP TÌM KIẾM THÔNG MINH (Search Box) -->
+                <!--<div class="bg-slate-900/90 border border-red-100 p-2.5 rounded-2xl shadow-lg space-y-3">
+                    <label class="block text-base font-semibold text-indigo-900 font-black uppercase tracking-wider">Tìm kiếm tài khoản nhanh</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-700 text-base"></i>
+                        <input id="userSearchInput" type="text" oninput="filterUserList()" placeholder="Nhập tên nhân viên..." class="w-full bg-slate-950 border border-red-100 rounded-xl pl-10 pr-4 py-2 text-base text-slate-100 focus:outline-none focus:border-indigo-500 transition">
+                    </div>
+
+                    <!-- Danh sách kết quả tìm kiếm -->
+                <!-- <div id="searchUserResults" class="max-h-56 overflow-y-auto space-y-1.5 hide-scrollbar"></div>
+                     </div>
+				
+				<!-- HỘP TÌM KIẾM THÔNG MINH -->
+				<div class="bg-gradient-to-br from-white via-slate-50 to-white border border-slate-200 p-4 rounded-[28px] shadow-2xl space-y-4">
+
+					<!-- TITLE -->
+					<label class="block text-[26px] font-black text-indigo-700 uppercase tracking-wide leading-none">
+						Tìm kiếm tài khoản nhanh
+					</label>
+
+					<!-- SEARCH -->
+					<div class="relative">
+
+						<i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl"></i>
+
+						<input
+							id="userSearchInput"
+							type="text"
+							oninput="filterUserList()"
+							placeholder="Nhập tên nhân viên..."
+							class="w-full bg-white border border-slate-200 rounded-2xl pl-12 pr-4 py-4 text-[18px] font-bold text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition shadow-md"
+						>
+
+					</div>
+
+					<!-- DANH SÁCH -->
+					<div
+						id="searchUserResults"
+						class="max-h-[72vh] overflow-y-auto space-y-3 hide-scrollbar pr-1"
+					></div>
+
+				</div>
+
             </section>
 
             <!-- ================= TAB 3: DỰ ĐOÁN (MỞ KHÓA SAU KHI ĐĂNG NHẬP) ================= -->
@@ -1089,8 +1122,12 @@ max-height:20px!important;
                 row.className = "bg-slate-950 p-2 rounded-xl flex items-center justify-between gap-1 border border-red-100";
                 row.innerHTML = `
                     <div class="flex-1 min-w-0">
-                        <span class="text-[9px] text-slate-700 block truncate">${match.MatchID} • ${match.MatchTime}</span>
-                        <span class="text-sm font-bold font-bold text-black font-bold block truncate">${match.HomeTeam} - ${match.AwayTeam}</span>
+                        <span class="text-[11px] font-bold text-white block truncate tracking-wide">
+							${match.MatchID} • ${match.MatchTime}
+						</span>
+                        <span class="text-[15px] font-extrabold text-white block truncate tracking-wide">
+							${match.HomeTeam} - ${match.AwayTeam}
+						</span>
                     </div>
                     <div class="flex items-center gap-1 shrink-0">
                         <input id="admin-home-${match.MatchID}" type="number" value="${homeScoreVal}" placeholder="-" class="w-8 h-8 bg-slate-900 border border-slate-700 rounded-lg text-center text-base font-bold text-white">
@@ -1368,19 +1405,14 @@ max-height:20px!important;
 			}
 
 			// ================= TAB CHƯA ĐẤU =================
-			else if (currentFilter === 'pending') {
+else if (currentFilter === 'pending') {
 
-				matchesToShow = todayMatches.filter(m => {
-					const matchDate = new Date(
-						m.MatchTime.replace(' ', 'T')
-					);
+    matchesToShow = todayMatches.filter(m => {
 
-					return (
-						m.Status !== "Đã kết thúc" &&
-						now < matchDate
-					);
-				});
-			}
+        return m.Status !== "Đã kết thúc";
+
+    });
+}
 
 			// ================= TAB ĐÃ XONG =================
 			else if (currentFilter === 'finished') {
@@ -1411,10 +1443,10 @@ max-height:20px!important;
                 const awayPredVal = prediction ? prediction.AwayPredict : '';
 
                 const card = document.createElement('div');
-                if (match.Status === "Đã kết thúc") {
+				if (match.Status === "Đã kết thúc") {
 
 					card.className =
-						"bg-gradient-to-br from-orange-950/40 to-slate-900 border border-orange-500/30 p-2.5 rounded-2xl space-y-3 relative overflow-hidden transition shadow-lg shadow-orange-500/10";
+						"bg-gradient-to-r from-white via-orange-100 to-white border border-orange-200 p-3 rounded-3xl space-y-3 relative overflow-hidden transition shadow-md";
 
 				} else {
 
@@ -1478,7 +1510,7 @@ max-height:20px!important;
 					statusHeader = `
 					<div class="flex items-center gap-1 bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 rounded-lg">
 
-						<span class="text-sm font-bold text-orange-300 font-semibold uppercase tracking-wide">
+						<span class="text-sm font-bold text-black-300 font-semibold uppercase tracking-wide">
 							Kết thúc
 						</span>
 
