@@ -273,10 +273,10 @@ max-height:20px!important;
 </style>
 
 </head>
-<body class="bg-red-50 text-slate-800 min-h-screen pb-24 flex justify-center overflow-x-hidden">
+<body class="bg-red-50 text-slate-800 min-h-screen pb-14 flex justify-center overflow-x-hidden">
 
     <!-- Container tối đa cho giao diện di động/máy tính bảng -->
-    <div class="w-full max-w-md bg-white shadow-lg backdrop-blur-xl min-h-screen relative flex flex-col">
+    <div class="w-full max-w-md bg-white shadow-lg backdrop-blur-xl h-screen relative flex flex-col overflow-hidden">
         
         <!-- Header ứng dụng -->
         
@@ -453,16 +453,16 @@ max-height:20px!important;
                 <!-- Thống kê chung -->
                 <div class="grid grid-cols-3 gap-1">
                     <div class="bg-slate-900/80 border border-red-100 p-3 rounded-xl text-center">
-                        <span class="text-sm font-bold text-slate-700 block mb-0.5">Thành Viên</span>
+                        <span class="text-sm font-bold text-slate-700 text-white block mb-0.5">Thành Viên</span>
                         <span id="statUsersCount" class="text-base font-bold text-white">-</span>
                     </div>
                     <div class="bg-slate-900/80 border border-red-100 p-3 rounded-xl text-center">
-                        <span class="text-sm font-bold text-slate-700 block mb-0.5">Trận Dự Đoán</span>
-                        <span id="statMatchesCount" class="text-base font-bold text-indigo-900 font-black">-</span>
+                        <span class="text-sm font-bold text-slate-700 text-white block mb-0.5">Trận Dự Đoán</span>
+                        <span id="statMatchesCount" class="text-base font-bold text-white">-</span>
                     </div>
                     <div class="bg-slate-900/80 border border-red-100 p-3 rounded-xl text-center">
-                        <span class="text-sm font-bold text-slate-700 block mb-0.5">Lượt Đoán</span>
-                        <span id="statPredictsCount" class="text-base font-bold text-emerald-800 font-black">-</span>
+                        <span class="text-sm font-bold text-slate-700 text-white block mb-0.5">Lượt Đoán</span>
+                        <span id="statPredictsCount" class="text-base font-bold text-white">-</span>
                     </div>
                 </div>
 
@@ -713,7 +713,7 @@ max-height:20px!important;
 
         <!-- THANH ĐIỀU HƯỚNG CHÂN TRANG (BOTTOM NAVIGATION) -->
         
-<footer class="bg-white shadow-lg/90 border-t border-red-100 py-0.5 px-6 sticky bottom-0 z-40 backdrop-blur-xl shadow-lg">
+<footer class="bg-white border-t border-slate-200 h-14 fixed bottom-0 left-0 right-0 z-50">
     <div class="flex justify-between items-center max-w-sm mx-auto">
 
         <button onclick="switchTab('profile')" id="nav-profile"
@@ -1261,6 +1261,7 @@ max-height:20px!important;
                 
                 if (rank === 1) {
                     rankBadge = '<span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-bold text-base flex items-center justify-center shadow-lg shadow-amber-400/20"><i class="fa-solid fa-crown"></i></span>';
+					//rankBadge = '<span class="w-6 h-6 rounded-full bg-gradient-to-br from-red-400 via-red-600 to-red-900 text-white font-bold text-base flex items-center justify-center border border-red-300 shadow-lg shadow-red-600/50"><i class="fa-solid fa-crown"></i></span>';
                 } else if (rank === 2) {
                     rankBadge = '<span class="w-6 h-6 rounded-full bg-slate-300 text-slate-950 font-bold text-base flex items-center justify-center shadow-lg shadow-slate-300/20">2</span>';
                 } else if (rank === 3) {
