@@ -652,13 +652,13 @@ max-height:20px!important;
 
         <!-- THANH ĐIỀU HƯỚNG CHÂN TRANG (BOTTOM NAVIGATION) -->
         
-<footer class="bg-white shadow-lg/90 border-t border-red-100 py-2 px-6 sticky bottom-0 z-40 backdrop-blur-xl shadow-lg">
+<footer class="bg-white shadow-lg/90 border-t border-red-100 py-0.5 px-6 sticky bottom-0 z-40 backdrop-blur-xl shadow-lg">
     <div class="flex justify-between items-center max-w-sm mx-auto">
 
         <button onclick="switchTab('profile')" id="nav-profile"
             class="flex flex-col items-center gap-1 group text-red-500">
 
-            <div class="w-10 h-6 rounded-full flex items-center justify-center">
+            <div class="w-10 h-4 rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-user-gear text-lg"></i>
             </div>
 
@@ -670,7 +670,7 @@ max-height:20px!important;
         <button onclick="switchTab('predict')" id="nav-predict"
             class="hidden flex flex-col items-center gap-1 group text-slate-700 hover:text-red-500">
 
-            <div class="w-10 h-6 rounded-full flex items-center justify-center">
+            <div class="w-10 h-4 rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-futbol text-lg"></i>
             </div>
 
@@ -682,7 +682,7 @@ max-height:20px!important;
         <button onclick="switchTab('dashboard')" id="nav-dashboard"
             class="flex flex-col items-center gap-1 group text-slate-700 hover:text-red-500">
 
-            <div class="w-10 h-6 rounded-full flex items-center justify-center">
+            <div class="w-10 h-4 rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-trophy text-lg"></i>
             </div>
 
@@ -724,7 +724,7 @@ max-height:20px!important;
 
         // Biến toàn cục
         let db = { ...DEFAULT_DB };
-        let API_URL = "https://script.google.com/macros/s/AKfycbzCPRE0WQjfju1ITF1mfv15Hd2ASYlkn2qFd21JkquD5ueGR9gaN_8EjuC6CfMMD3aI/exec";
+        let API_URL = "https://script.google.com/macros/s/AKfycbwEx3shqjHp3yp7nI-It5GYSrDbp3CTxFlHlOyfuxiTbzOjJ8EbOBTialXPCHjo9AtX/exec";
         let currentUser = null;
         let currentFilter = "all"; 
         let currentImportType = "users"; // "users" hoặc "matches"
@@ -1719,6 +1719,42 @@ else if (currentFilter === 'pending') {
             document.getElementById('customAlert').classList.add('hidden');
             document.getElementById('alertOverlay').classList.add('hidden');
         }
+		
+		async function stressTestLockService() {
+
+			const totalRequests = 30;
+
+			const promises = [];
+
+			for (let i = 0; i < totalRequests; i++) {
+
+				const payload = {
+					action: "submitPrediction",
+					userId: "TEST_" + i,
+					matchId: "M01",
+					homePredict: Math.floor(Math.random() * 5),
+					awayPredict: Math.floor(Math.random() * 5)
+				};
+
+				const p = fetch(API_URL, {
+					method: "POST",
+					body: JSON.stringify(payload)
+				})
+				.then(r => r.json())
+				.then(data => {
+					console.log("SUCCESS", i, data);
+				})
+				.catch(err => {
+					console.error("ERROR", i, err);
+				});
+
+				promises.push(p);
+			}
+
+			await Promise.all(promises);
+
+			console.log("DONE TEST");
+		}
     </script>
 
 <script>
