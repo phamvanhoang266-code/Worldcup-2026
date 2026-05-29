@@ -577,25 +577,86 @@ max-height:20px!important;
                 </div>
 
                 <!-- BÌNH CHỌN DÀI HẠN (Vua phá lưới & Vô địch) -->
-                <div class="glass-card p-2.5 rounded-2xl space-y-3">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-base font-bold uppercase tracking-wider text-indigo-900 font-black"><i class="fa-solid fa-award mr-1"></i> Dự đoán vô địch & phá lưới</h4>
-                        <span class="text-[9px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-bold">Chỉ chọn 1 lần</span>
-                    </div>
-                    <div class="grid grid-cols-2 gap-1">
-                        <div class="space-y-1">
-                            <label class="text-sm font-bold text-slate-700">Đội tuyển Vô địch:</label>
-                            <input id="inputChampion" type="text" placeholder="Ví dụ: Pháp, Đức..." class="w-full bg-slate-950 border border-red-100 rounded-lg p-2 text-base text-white focus:outline-none focus:border-indigo-500">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-sm font-bold text-slate-700">Vua Phá Lưới:</label>
-                            <input id="inputTopScorer" type="text" placeholder="Mbappe, Kane..." class="w-full bg-slate-950 border border-red-100 rounded-lg p-2 text-base text-white focus:outline-none focus:border-indigo-500">
-                        </div>
-                    </div>
-                    <button onclick="submitLongTermPredict()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white text-base font-bold py-2 rounded-xl transition shadow-lg shadow-indigo-600/15">
-                        <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Lưu bình chọn dài hạn
-                    </button>
-                </div>
+				<!-- BÌNH CHỌN DÀI HẠN (Vua phá lưới & Vô địch) -->
+				<div class="glass-card p-2.5 rounded-2xl">
+
+					<!-- HEADER -->
+					<div
+						class="flex justify-between items-center cursor-pointer"
+						onclick="toggleChampionBox()">
+
+						<div class="flex items-center gap-2">
+
+							<h4 class="text-base font-bold uppercase tracking-wider text-indigo-900 font-black">
+								<i class="fa-solid fa-award mr-1"></i>
+								Dự đoán vô địch & phá lưới
+							</h4>
+
+						</div>
+
+						<div class="flex items-center gap-2">
+
+							<span class="text-[9px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-bold">
+								Chỉ chọn 1 lần
+							</span>
+
+							<div
+								id="championToggleBtn"
+								class="w-5 h-5 rounded-full bg-indigo-600 text-white text-xs font-black flex items-center justify-center">
+								-
+							</div>
+
+						</div>
+
+					</div>
+
+					<!-- CONTENT -->
+					<div id="championContent" class="space-y-3 mt-3 hidden">
+
+						<div class="grid grid-cols-2 gap-1">
+
+							<div class="space-y-1">
+
+								<label class="text-sm font-bold text-slate-700">
+									Đội tuyển Vô địch:
+								</label>
+
+								<input
+									id="inputChampion"
+									type="text"
+									placeholder="Ví dụ: Pháp, Đức..."
+									class="w-full bg-slate-950 border border-red-100 rounded-lg p-2 text-base text-white focus:outline-none focus:border-indigo-500">
+
+							</div>
+
+							<div class="space-y-1">
+
+								<label class="text-sm font-bold text-slate-700">
+									Vua Phá Lưới:
+								</label>
+
+								<input
+									id="inputTopScorer"
+									type="text"
+									placeholder="Mbappe, Kane..."
+									class="w-full bg-slate-950 border border-red-100 rounded-lg p-2 text-base text-white focus:outline-none focus:border-indigo-500">
+
+							</div>
+
+						</div>
+
+						<button
+							onclick="submitLongTermPredict()"
+							class="w-full bg-indigo-600 hover:bg-indigo-500 text-white text-base font-bold py-2 rounded-xl transition shadow-lg shadow-indigo-600/15">
+
+							<i class="fa-solid fa-cloud-arrow-up mr-1"></i>
+							Lưu bình chọn dài hạn
+
+						</button>
+
+					</div>
+
+				</div>
 
                 <!-- Bộ lọc trạng thái đấu -->
                 <div class="flex gap-1.5 p-1 glass-card rounded-xl">
@@ -1784,6 +1845,25 @@ function autoUpdatePointsEarned(){
 
 }
 setInterval(autoUpdatePointsEarned,3000);
+
+function toggleChampionBox() {
+
+    const content = document.getElementById("championContent");
+    const btn = document.getElementById("championToggleBtn");
+
+    if (content.classList.contains("hidden")) {
+
+        content.classList.remove("hidden");
+        btn.innerHTML = "-";
+
+    } else {
+
+        content.classList.add("hidden");
+        btn.innerHTML = "+";
+
+    }
+}
+
 </script>
 
 </body>
