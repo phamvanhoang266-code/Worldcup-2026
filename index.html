@@ -1470,14 +1470,27 @@ max-height:20px!important;
 			}
 
 			// ================= TAB CHƯA ĐẤU =================
-else if (currentFilter === 'pending') {
-
-    matchesToShow = todayMatches.filter(m => {
-
-        return m.Status !== "Đã kết thúc";
-
-    });
-}
+			else if (currentFilter === 'pending') {
+			
+			    matchesToShow = db.matches.filter(m => {
+			
+			        if (!m.MatchTime) return false;
+			
+			        const matchDate = new Date(
+			            m.MatchTime.replace(' ', 'T')
+			        );
+			
+			        const openTime = new Date(
+			            matchDate.getTime() - 24 * 60 * 60 * 1000
+			        );
+			
+			        return (
+			            new Date() >= openTime &&
+			            new Date() < matchDate &&
+			            m.Status !== "Đã kết thúc"
+			        );
+			    });
+			}
 
 			// ================= TAB ĐÃ XONG =================
 			else if (currentFilter === 'finished') {
