@@ -1557,14 +1557,21 @@ else if (currentFilter === 'pending') {
 					// ===== CHỈ MỞ BÌNH CHỌN:
 					// 1. Đúng ngày hôm nay
 					// 2. Chưa tới giờ đá trước 24 giờ
-					const openTime = new Date(matchDate.getTime() - 24 * 60 * 60 * 1000);
-					if (
-						now >= openTime &&
-						now <= matchDate &&
-						match.Status !== "Đã kết thúc"
-					) {
-						isLocked = false;
-					}
+				const [datePart, timePart] = match.MatchTime.split(' ');
+				const [y,m,d] = datePart.split('-').map(Number);
+				const [h,min] = timePart.split(':').map(Number);
+				
+				const matchDate = new Date(y, m-1, d, h, min, 0);
+				
+				const openTime = new Date(matchDate.getTime() - 24*60*60*1000);
+				
+				if (
+				    now >= openTime &&
+				    now < matchDate &&
+				    match.Status !== "Đã kết thúc"
+				){
+				    isLocked = false;
+				}
 				}
 
                 // Nhãn trạng thái & Điểm cộng
