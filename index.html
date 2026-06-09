@@ -1556,22 +1556,14 @@ else if (currentFilter === 'pending') {
 
 					// ===== CHỈ MỞ BÌNH CHỌN:
 					// 1. Đúng ngày hôm nay
-					// 2. Chưa tới giờ đá trước 24 giờ
-				const [datePart, timePart] = match.MatchTime.split(' ');
-				const [y,m,d] = datePart.split('-').map(Number);
-				const [h,min] = timePart.split(':').map(Number);
-				
-				const matchDate = new Date(y, m-1, d, h, min, 0);
-				
-				const openTime = new Date(matchDate.getTime() - 24*60*60*1000);
-				
-				if (
-				    now >= openTime &&
-				    now < matchDate &&
-				    match.Status !== "Đã kết thúc"
-				){
-				    isLocked = false;
-				}
+					// 2. Chưa tới giờ đá
+					if (
+						todayStr === matchStr &&
+						now < matchDate &&
+						match.Status !== "Đã kết thúc"
+					) {
+						isLocked = false;
+					}
 				}
 
                 // Nhãn trạng thái & Điểm cộng
@@ -1614,7 +1606,7 @@ else if (currentFilter === 'pending') {
 						<i class="fa-solid fa-lock text-red-400 text-sm font-bold"></i>
 
 						<span class="text-sm font-bold text-red-300 font-semibold uppercase">
-							Đã khóa
+							Đã khóa cược
 						</span>
 
 					</div>
@@ -1873,9 +1865,9 @@ function toggleChampionBox() {
         content.classList.add("hidden");
         btn.innerHTML = "+";
 
-	    }
-	}
-	</script>
+    }
+}
+
     <script src="app.js"></script>
 
     <script>
