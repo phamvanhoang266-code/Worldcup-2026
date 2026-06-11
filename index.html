@@ -760,7 +760,7 @@ max-height:20px!important;
 
 	<script>
 	
-	const APP_VERSION = "11C062026";
+	const APP_VERSION = "11D062026";
 		
 	</script>
 	
@@ -1043,45 +1043,10 @@ max-height:20px!important;
 
         // Tự động tính điểm và xếp hạng lại dựa trên tỷ số thực tế
         function recalculatePointsAndRanks() {
-            // Khởi tạo điểm nhân viên về 0
-            db.users.forEach(u => u.Points = 0);
-
-            // Duyệt qua từng dự đoán để đối chiếu tỷ số thực tế
-            db.predictions.forEach(p => {
-                const match = db.matches.find(m => m.MatchID === p.MatchID);
-                if (match && match.HomeScore !== null && match.AwayScore !== null && match.Status === "Đã kết thúc") {
-                    const realHome = Number(match.HomeScore);
-                    const realAway = Number(match.AwayScore);
-                    const predHome = Number(p.HomePredict);
-                    const predAway = Number(p.AwayPredict);
-
-                    let pts = 0;
-                    if (realHome === predHome && realAway === predAway) {
-                        pts = 3; // Đúng tỷ số: 3 điểm
-                    } else if (
-                        (realHome > realAway && predHome > predAway) ||
-                        (realHome < realAway && predHome < predAway) ||
-                        (realHome === realAway && predHome === predAway)
-                    ) {
-                        pts = 2; // Đúng kết quả: 2 điểm
-                    } else {
-                        pts = 0; // Đoán sai: 0 điểm
-                    }
-
-                    //p.PointsEarned = pts;
-
-                    // Cộng vào tổng điểm của User
-                    const user = db.users.find(u => u.ID === p.UserID);
-                    if (user) {
-                        //user.Points += pts;
-                    }
-                }
-            });
-
-            // Sắp xếp BXH
-            db.users.sort((a, b) => b.Points - a.Points);
-            db.users.forEach((u, idx) => u.Rank = idx + 1);
-        }
+		    db.users.sort(
+		        (a, b) => Number(a.Rank || 9999) - Number(b.Rank || 9999)
+		    );
+		}
 
         // ------------------ IMPORT EXCEL / CSV CHUYÊN NGHIỆP ------------------
         function setImportType(type) {
@@ -1262,7 +1227,7 @@ max-height:20px!important;
             listContainer.innerHTML = '';
 
             db.users.forEach((user, idx) => {
-                const rank = idx + 1;
+                const rank = Number(user.Rank || 9999);
                 let rankBadge = '';
                 
                 if (rank === 1) {
