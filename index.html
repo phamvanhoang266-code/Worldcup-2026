@@ -758,6 +758,17 @@ max-height:20px!important;
 
     </div>
 
+	<script>
+	
+	const APP_VERSION = "11.06.2026";
+	
+	// Biến toàn cục
+	let db = { ...DEFAULT_DB };
+	let API_URL = "...";
+	let currentUser = null;
+	
+	</script>
+	
     <script>
         // MẪU DỮ LIỆU KHỞI TẠO CHUẨN (Được cập nhật bởi LocalStorage hoặc Online API)
         const DEFAULT_DB = {
@@ -1858,7 +1869,36 @@ function toggleChampionBox() {
     }
 }
 </script>
-    <script src="app.js"></script>
+
+<script>
+async function checkNewVersion() {
+    try {
+        const response =
+            await fetch(
+                "version.json?t=" + Date.now()
+            );
+        const data = await response.json();
+
+        if (data.version !== APP_VERSION) {
+
+            showAlert(
+                "Có phiên bản mới",
+                "Vui lòng tải lại trang để cập nhật",
+                "info"
+            );
+        }
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+checkNewVersion();
+setInterval(checkNewVersion, 60000);
+</script>
+
+<script src="app.js"></script>
+
+<script src="app.js"></script>
 </body>
 </html>
 	
