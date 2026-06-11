@@ -760,7 +760,7 @@ max-height:20px!important;
 
 	<script>
 	
-	const APP_VERSION = "11D062026";
+	const APP_VERSION = "11E062026";
 		
 	</script>
 	
@@ -1331,7 +1331,24 @@ max-height:20px!important;
         }
 
         function applyUserSession() {
-            if (!currentUser) return;
+            const deadline = new Date("2026-06-18T23:59:59");
+			if (new Date() > deadline) {
+			
+			    document.getElementById("inputChampion").disabled = true;
+			    document.getElementById("inputTopScorer").disabled = true;
+			
+			    const btn = document.querySelector(
+			        "#championContent button"
+			    );
+			
+			    if (btn) {
+			        btn.disabled = true;
+			        btn.innerHTML =
+			            '<i class="fa-solid fa-lock mr-1"></i> Đã khóa dự đoán';
+			    }
+			}
+			
+			if (!currentUser) return;
 
             document.getElementById('currentUserCard').classList.remove('hidden');
             document.getElementById('selectedUserName').innerText = `${currentUser.Name} (${currentUser.Department})`;
@@ -1697,7 +1714,18 @@ max-height:20px!important;
         }
 
         function submitLongTermPredict() {
-            if (!currentUser) return;
+            const deadline = new Date("2026-06-18T23:59:59");
+
+			if (new Date() > deadline) {
+			    showAlert(
+			        "Đã khóa",
+			        "Hết thời gian dự đoán Đội vô địch và Vua phá lưới.",
+			        "warning"
+			    );
+			    return;
+			}
+			
+			if (!currentUser) return;
 
             const champion = document.getElementById('inputChampion').value.trim();
             const topScorer = document.getElementById('inputTopScorer').value.trim();
