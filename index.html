@@ -600,18 +600,18 @@ max-height:20px!important;
 								Chỉ chọn 1 lần
 							</span>
 
-							<div
-								id="championToggleBtn"
-								class="w-5 h-5 rounded-full bg-indigo-600 text-white text-xs font-black flex items-center justify-center">
-								-
-							</div>
+						<div
+						    id="championToggleBtn"
+						    class="w-5 h-5 rounded-full bg-indigo-600 text-white text-xs font-black flex items-center justify-center">
+						    +
+						</div>
 
 						</div>
 
 					</div>
 
 					<!-- CONTENT -->
-					<div id="championContent" class="space-y-3 mt-3">
+					<div id="championContent" class="hidden space-y-3 mt-3">
 
 						<div class="grid grid-cols-2 gap-1">
 
@@ -1837,27 +1837,24 @@ function autoUpdatePointsEarned(){
                 p.PointsEarned = 0;
             }
         }
-
     });
-
 }
+
 setInterval(autoUpdatePointsEarned,3000);
+</script>
+
 <script>
 function toggleChampionBox() {
-   
+
     const content = document.getElementById("championContent");
     const btn = document.getElementById("championToggleBtn");
 
     if (content.classList.contains("hidden")) {
-
         content.classList.remove("hidden");
         btn.innerHTML = "-";
-
     } else {
-
         content.classList.add("hidden");
         btn.innerHTML = "+";
-
     }
 }
 </script>
