@@ -276,7 +276,7 @@ max-height:20px!important;
 <body class="bg-red-50 text-slate-800 min-h-screen pb-14 flex justify-center overflow-x-hidden">
 
     <!-- Container tối đa cho giao diện di động/máy tính bảng -->
-    <div class="w-full max-w-md bg-white shadow-lg backdrop-blur-xl h-screen relative flex flex-col overflow-hidden">
+   <div class="w-full max-w-md bg-white shadow-lg backdrop-blur-xl min-h-[100dvh] relative flex flex-col">
         
         <!-- Header ứng dụng -->
         
@@ -402,7 +402,7 @@ max-height:20px!important;
         </div>
 
         <!-- MÀN HÌNH CHÍNH -->
-        <main class="flex-1 p-2.5 overflow-y-auto">
+        <main class="flex-1 overflow-y-auto p-2.5">
             
             <!-- ================= BẢNG QUẢN TRỊ ADMIN CAO CẤP (Chỉ hiện khi là Admin) ================= -->
             <section id="adminConsoleSection" class="hidden space-y-2.5 mb-6 bg-slate-900 border border-indigo-500/20 p-2.5 rounded-2xl relative shadow-lg">
@@ -713,7 +713,7 @@ max-height:20px!important;
 
         <!-- THANH ĐIỀU HƯỚNG CHÂN TRANG (BOTTOM NAVIGATION) -->
         
-<footer class="bg-white border-t border-slate-200 h-14 fixed bottom-0 left-0 right-0 z-50">
+<footer class="bg-white border-t border-slate-200 h-14">
     <div class="flex justify-between items-center max-w-sm mx-auto">
 
         <button onclick="switchTab('profile')" id="nav-profile"
@@ -760,7 +760,7 @@ max-height:20px!important;
 
 	<script>
 	
-	const APP_VERSION = "11E062026";
+	const APP_VERSION = "12A062026";
 		
 	</script>
 	
